@@ -1,32 +1,33 @@
-import React, { SetStateAction, useState } from 'react'
+import useNewSubForm from '../hooks/userNewSub';
 import { Sub } from '../types';
-
-interface FormState {
-    inputValues: Sub,
-}
-
 interface FromProps {
    onNewSub: (newSub: Sub) => void;
 }
 
 const Form = ({onNewSub}: FromProps) => {
 
-    const [inputValues, setInputValues] = useState<FormState["inputValues"]>({
-        nick: "",
-        subMonths: 0,
-        avatar: "",
-        description: "",
-    });
+    const [inputValues, dispatch] = useNewSubForm();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onNewSub(inputValues);
+        handleClearState();
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setInputValues({
-            ...inputValues,
-            [e.target.name]: e.target.value
+        const {name, value} = e.target;
+        dispatch({
+            type: "change_value",
+            payload: {
+                inputName: name,
+                inputValue: value
+            }
+        })
+    }
+
+    const handleClearState = () => {
+        dispatch({
+            type: "clear",
         })
     }
 

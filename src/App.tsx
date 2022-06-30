@@ -11,13 +11,13 @@ interface AppState {
 
 const initialState = [
   {
-    nick: "elvergalarga",
+    nick: "Jose_Perez",
     subMonths: 3,
     avatar: "https://i.pravatar.cc/150?u=elvergalarga",
     description: "aprendiz de programacion"
   },
   {
-    nick: "rosamelano",
+    nick: "Rosa_Paez",
     subMonths: 2,
     avatar: "https://i.pravatar.cc/150?u=rosamelano",
   }
@@ -27,8 +27,6 @@ const initialState = [
 function App() {
 
   const [subs, setSubs] = useState<AppState["subs"]>([]);
-
-  const [newSubscribers, setNewSuscribers] = useState<AppState["newSubs"]>(0);
 
   const divRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
