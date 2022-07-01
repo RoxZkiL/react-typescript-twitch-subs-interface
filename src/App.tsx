@@ -29,6 +29,7 @@ function App() {
   const [subs, setSubs] = useState<AppState["subs"]>([]);
 
   const divRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setSubs(initialState);
   }, []);
